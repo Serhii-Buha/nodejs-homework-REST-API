@@ -41,7 +41,7 @@ const addContact = async (data) => {
 
     if (existingContact) {
       console.log("Contact already exists");
-      return;
+      return { message: "Contact already exists" };
     }
 
     const newContact = {
