@@ -1,6 +1,6 @@
 const { isValidObjectId } = require("mongoose");
-const { httpError } = require("../../utils/httpError");
-const { Contact } = require("../../models/contact");
+const { httpError } = require("../../utils");
+const { Contact } = require("../../models");
 
 exports.deleteById = async (req, res, next) => {
   try {

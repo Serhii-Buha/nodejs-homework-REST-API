@@ -1,7 +1,7 @@
 const { isValidObjectId } = require("mongoose");
-const { updateFavoriteSchema } = require("../../schemas/contacts");
-const { httpError } = require("../../utils/httpError");
-const { Contact } = require("../../models/contact");
+const { updateFavoriteSchema } = require("../../schemas");
+const { httpError } = require("../../utils");
+const { Contact } = require("../../models");
 
 exports.updateFavorite = async (req, res, next) => {
   try {

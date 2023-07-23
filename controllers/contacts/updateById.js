@@ -1,11 +1,11 @@
 const { isValidObjectId } = require("mongoose");
-const { addShema } = require("../../schemas/contacts");
-const { httpError } = require("../../utils/httpError");
-const { Contact } = require("../../models/contact");
+const { addSchema } = require("../../schemas");
+const { httpError } = require("../../utils");
+const { Contact } = require("../../models");
 
 exports.updateById = async (req, res, next) => {
   try {
-    const { error } = addShema.validate(req.body);
+    const { error } = addSchema.validate(req.body);
     if (error) throw httpError(400, "missing fields");
 
     const { contactId } = req.params;
