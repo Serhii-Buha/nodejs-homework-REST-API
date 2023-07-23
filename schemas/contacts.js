@@ -1,30 +1,38 @@
 const joi = require("joi");
 const { Schema } = require("mongoose");
-const { mongooseError } = require("../utils/mongooseError");
+const { mongooseError } = require("../utils");
 
-const addShema = joi.object({
+const addSchema = joi.object({
   name: joi.string().required(),
   email: joi.string().required(),
   phone: joi.string().required(),
   favorite: joi.boolean(),
 });
 
-const contactSchema = new Schema({
-  name: {
-    type: String,
-    required: [true, "Set name for contact"],
+const contactSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "Set name for contact"],
+    },
+    email: {
+      type: String,
+    },
+    phone: {
+      type: String,
+    },
+    favorite: {
+      type: Boolean,
+      default: false,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
   },
-  email: {
-    type: String,
-  },
-  phone: {
-    type: String,
-  },
-  favorite: {
-    type: Boolean,
-    default: false,
-  },
-});
+  { versionKey: false, timestamps: true }
+);
 
 contactSchema.post("save", mongooseError);
 
@@ -33,7 +41,7 @@ const updateFavoriteSchema = joi.object({
 });
 
 module.exports = {
-  addShema,
+  addSchema,
   contactSchema,
   updateFavoriteSchema,
 };
