@@ -10,7 +10,7 @@ exports.authenticate = async (req, res, next) => {
 
     const [bearer, token] = authorization?.split(" ");
 
-    if (bearer !== "Bearer") next(httpError(401, "Not authorized"));
+    if (bearer !== "Bearer" || !token) next(httpError(401, "Not authorized"));
 
     const { id } = jwt.verify(token, SECRET_KEY);
 
