@@ -7,7 +7,7 @@ const {
   updateById,
   updateFavorite,
 } = require("../../controllers/contacts");
-const authenticate = require("../../middleware");
+const { authenticate } = require("../../middleware");
 
 const router = express.Router();
 
