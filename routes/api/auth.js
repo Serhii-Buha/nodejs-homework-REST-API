@@ -7,11 +7,17 @@ const {
   current,
   updateSubscription,
   updateAvatar,
+  verifyEmail,
+  resendVerifyEmail,
 } = require("../../controllers/users");
 
 const router = express.Router();
 
 router.post("/users/register", register);
+
+router.get("/users/verify/:verificationToken", verifyEmail);
+
+router.post("/users/verify", resendVerifyEmail);
 
 router.post("/users/login", login);
 
