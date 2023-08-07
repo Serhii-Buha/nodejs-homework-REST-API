@@ -15,6 +15,7 @@ exports.login = async (req, res, next) => {
 
     const user = await User.findOne({ email });
     if (!user) throw httpError(401, "Email or password is wrong");
+    if (!user.verify) throw httpError(404, "User not found");
 
     const passwordCompare = await bcrypt.compare(password, user.password);
 
